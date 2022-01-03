@@ -10,15 +10,15 @@ import logo from '../img/logo.png'
 
 const Header = () => {
 
-    const [foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket] = useContext(InvoiceContext);
+    const [foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, searchFoodData] = useContext(InvoiceContext);
     return(
         <div className="header">
             <div className="header-left">
                 <img src={logo} alt="" className='logo'/>
                 <div className='home-type'>
                     <Link to="/" className='type'>Home</Link>
-                    <Link to="/" className='type'>About</Link>
-                    <Link to="/" className='type'>Contact</Link>
+                    <Link to="about" className='type about'>About</Link>
+                    <Link to="contact" className='type contact'>Contact</Link>
                     
                     
                 </div>
@@ -31,7 +31,7 @@ const Header = () => {
 
                     </div>
                     <div className='search-food-input'>
-                        <input type="text" placeholder='search your favourite food' />
+                        <input type="text" value={input} onChange={e => handleInput(e)} placeholder='search your favourite food' />
                         
                     </div>
                 </div>

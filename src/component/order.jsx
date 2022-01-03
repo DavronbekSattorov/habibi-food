@@ -32,8 +32,12 @@ const Order = () => {
             }
 
         </div>
+        <div className='order-buttons'>
+            <button className='order-button'>Order</button>
+            <button className='order-button' onClick={handleEmptyBasket}>Empty Basket</button>
             <p className='total'>Total: ${total} </p>
-            <button className='empty-basket' onClick={handleEmptyBasket}>Empty Basket</button>
+
+        </div>
         </div>
     )
 }

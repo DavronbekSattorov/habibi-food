@@ -1,5 +1,6 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+
 
 import './App.css';
 import Header from './component/header';
@@ -8,7 +9,9 @@ import Drinks from './component/drinks';
 import Desserts from './component/desserts';
 import Modal from "./component/modal";
 import Order from './component/order'
+import About from "./component/about";
 import {data} from './data'
+import Contact from "./component/contact";
 
 
 
@@ -20,6 +23,10 @@ function App() {
   const [modal, setModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState([]);
   const [order, setOrder] = useState([]);
+  const [alert, setAlert] = useState(false);
+
+  const [input, setInput] = useState('');
+
 
   const onClickSelect = (id) => {
     const filter = data.filter(el => el.id === id);
@@ -32,14 +39,23 @@ function App() {
   }
 
   const handleOrder = (id) => {
+    const checkSame = order.filter(el => el.id !== id);
     const filtered = foodData.filter(el => el.id === id);
-    const arr = [...order, ...filtered];
+    const arr = [...checkSame, ...filtered];
     const finalarr = arr.map(el => {
       return(
-        {...el, amount: 0}
+        {...el, amount: el.amount ? el.amount : 0}
       )
     })
     setOrder(finalarr);
+    handleAlert();
+  }
+
+  const handleAlert = () => {
+      setAlert(true)
+      setTimeout(() => {
+        setAlert(false)
+      }, 2000);
   }
 
   const handleIncreaseAmount = (id) => {
@@ -55,12 +71,25 @@ function App() {
   const handleEmptyBasket = () => {
     setOrder([]);
   }
+  
+  const searchFoodData = foodData.filter(el => el.name.toLowerCase().includes(input.toLowerCase()));
+    
+  
+
+  const handleInput = (e) => {
+    setInput(e.target.value)
+    
+  }
+
 
 
   console.log(selectedItem, 'selected')
   console.log(order,'orderrrrrr')
+  console.log(searchFoodData,'searchFoodData')
+  console.log(input,'input')
+  console.log(alert,'alert')
   return (
-    <InvoiceContext.Provider value={[foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount ]}>
+    <InvoiceContext.Provider value={[foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, searchFoodData, alert ]}>
       <div className="App">
         <Header/>
         <Routes>
@@ -74,6 +103,8 @@ function App() {
                 />
 
             <Route path="order" element={<Order/>} />
+            <Route path="about" element={<About/>} />
+            <Route path="contact" element={<Contact/>} />
          </Routes>
             
 

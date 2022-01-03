@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 const Modal = () => {
 
-    const [foodData, onClickSelect, selectedItem, closeModal, handleOrder, order] = useContext(InvoiceContext);
+    const [foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, searchFoodData, alert ] = useContext(InvoiceContext);
     console.log(selectedItem)
     return(
         <div className='modal'>
@@ -23,6 +23,17 @@ const Modal = () => {
                 x
                 </button>
             </section>
+
+            {
+                alert ? 
+                    <div className='notification'>
+                            <p className='notification-leftBorder'></p>
+                            <div className='notification-message'>
+                                <h4 className='success-text'>Success</h4>
+                                <p className='success-txt'>{selectedItem[0].name} added to wishes</p>
+                            </div>
+                    </div> : ''
+            }
         </div>
     )
 }
