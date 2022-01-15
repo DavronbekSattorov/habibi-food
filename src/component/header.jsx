@@ -10,7 +10,7 @@ import logo from '../img/logo.png'
 
 const Header = () => {
 
-    const [foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, searchFoodData] = useContext(InvoiceContext);
+    const [foodData, onClickSelect,  searchFoodData, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, alert] = useContext(InvoiceContext);
     return(
         <div className="header">
             <div className="header-left">

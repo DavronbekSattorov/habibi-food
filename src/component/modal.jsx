@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 const Modal = () => {
 
-    const [foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, searchFoodData, alert ] = useContext(InvoiceContext);
+    const [foodData, onClickSelect,  searchFoodData, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, alert ] = useContext(InvoiceContext);
     console.log(selectedItem)
     return(
         <div className='modal'>

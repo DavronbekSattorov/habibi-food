@@ -2,7 +2,7 @@ import { InvoiceContext } from '../App';
 import { useContext } from 'react';
 
 const Order = () => {
-    const [foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount] = useContext(InvoiceContext);
+    const [foodData, onClickSelect,  searchFoodData, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, alert] = useContext(InvoiceContext);
     console.log(order,'order')
 
     const total = order.reduce((acc, el) => acc += el.price * el.amount, 0 );

@@ -6,7 +6,7 @@ import { useContext } from 'react';
 const Drinks = () => {
 
 
-    const [foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, searchFoodData] = useContext(InvoiceContext);
+    const [foodData, onClickSelect, searchFoodData] = useContext(InvoiceContext);
     console.log(foodData,'meal')
     const filtered = searchFoodData.filter(el => el.type === 'drink');
 

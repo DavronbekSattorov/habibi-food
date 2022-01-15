@@ -1,7 +1,6 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
-
 import './App.css';
 import Header from './component/header';
 import Meals from './component/meals';
@@ -10,26 +9,41 @@ import Desserts from './component/desserts';
 import Modal from "./component/modal";
 import Order from './component/order'
 import About from "./component/about";
-import {data} from './data'
 import Contact from "./component/contact";
 
+//firebase
+import db from './firebase';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 
 
 export const InvoiceContext = createContext();
 
 function App() {
 
-  const [foodData, setData] = useState(data);
+  const [foodData, setData] = useState([]);
   const [modal, setModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState([]);
   const [order, setOrder] = useState([]);
   const [alert, setAlert] = useState(false);
-
   const [input, setInput] = useState('');
+
+  // FireBase connection
+  const userCollectionRef = collection(db, 'food');
+  
+  // Getting data from FireBase
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getDocs(userCollectionRef);
+      console.log('data',data)
+      setData(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
+    }
+    getUsers();
+  },[])
+
 
 
   const onClickSelect = (id) => {
-    const filter = data.filter(el => el.id === id);
+    const filter = foodData.filter(el => el.id === id);
     setSelectedItem(filter);
     setModal(true);
   }
@@ -81,15 +95,8 @@ function App() {
     
   }
 
-
-
-  console.log(selectedItem, 'selected')
-  console.log(order,'orderrrrrr')
-  console.log(searchFoodData,'searchFoodData')
-  console.log(input,'input')
-  console.log(alert,'alert')
   return (
-    <InvoiceContext.Provider value={[foodData, onClickSelect, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, searchFoodData, alert ]}>
+    <InvoiceContext.Provider value={[foodData, onClickSelect,  searchFoodData, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, alert ]}>
       <div className="App">
         <Header/>
         <Routes>
