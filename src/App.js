@@ -14,6 +14,7 @@ import Contact from "./component/contact";
 //firebase
 import db from './firebase';
 import { collection, getDocs, addDoc } from 'firebase/firestore';
+import OrderDetails from "./component/orderDetails";
 
 
 export const InvoiceContext = createContext();
@@ -109,9 +110,12 @@ function App() {
                 </div> : <Modal/>} 
                 />
 
-            <Route path="order" element={<Order/>} />
+            <Route path="order" element={<Order/>}/> 
+            <Route path="/order/:orderDetail" element={<OrderDetails/>} />
+            
             <Route path="about" element={<About/>} />
             <Route path="contact" element={<Contact/>} />
+           
          </Routes>
             
 

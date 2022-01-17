@@ -1,5 +1,6 @@
 import { InvoiceContext } from '../App';
 import { useContext } from 'react';
+import {Link} from "react-router-dom";
 
 const Order = () => {
     const [foodData, onClickSelect,  searchFoodData, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, alert] = useContext(InvoiceContext);
@@ -8,9 +9,7 @@ const Order = () => {
     const total = order.reduce((acc, el) => acc += el.price * el.amount, 0 );
     return(
         <div>
-
-        <div className='order-container'>
-            
+        <div className='order-container'> 
             {
                 order.map(el => {
                     return(
@@ -24,19 +23,17 @@ const Order = () => {
                                     <button onClick={() => handleDecresaeAmount(el.id)}> - </button> 
                                     <p>{el.amount}</p>
                                     <button onClick={() => handleIncreaseAmount(el.id)}>+</button>
-
                                 </div>
                         </div>
                     )
                 })
             }
-
         </div>
         <div className='order-buttons'>
-            <button className='order-button'>Order</button>
+        
+            <Link to="/order/orderDetail" className='order-button'>Order</Link>
             <button className='order-button' onClick={handleEmptyBasket}>Empty Basket</button>
             <p className='total'>Total: ${total} </p>
-
         </div>
         </div>
     )

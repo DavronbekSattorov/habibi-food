@@ -401,6 +401,42 @@
   margin-bottom:5px ;
 }
 
+/*--------- Order detail ---------*/
+
+.orderDetailConatiner {
+  width: 80%;
+  height: 90vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.user-info {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.input-label {
+  width: 200px;
+  text-align: end;
+  margin-right: 30px;
+}
+
+input {
+  border-radius: 4px;
+  border: 1px solid rgb(105, 104, 104);
+}
+
+input:focus {
+  outline: none;
+}
+/*----------------------------------------------------*/
+/*-----------RESPONSIVE PART-----------*/
+/*----------------------------------------------------*/
+
 
 /*----------- On screens that are 992px or less -----------*/
 
