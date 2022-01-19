@@ -1,6 +1,7 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
+
 import './App.css';
 import Header from './component/header';
 import Meals from './component/meals';
@@ -27,6 +28,12 @@ function App() {
   const [order, setOrder] = useState([]);
   const [alert, setAlert] = useState(false);
   const [input, setInput] = useState('');
+  const [orderDetail, setOrderDetail] = useState([]);
+
+
+
+ 
+
 
   // FireBase connection
   const userCollectionRef = collection(db, 'food');
