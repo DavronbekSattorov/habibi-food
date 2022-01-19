@@ -1,5 +1,10 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import apiKey from './emailkey';
+import emailjs from 'emailjs-com';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
 
 
 import './App.css';
@@ -28,9 +33,45 @@ function App() {
   const [order, setOrder] = useState([]);
   const [alert, setAlert] = useState(false);
   const [input, setInput] = useState('');
-  const [orderDetail, setOrderDetail] = useState([]);
+  
+  
+  //orderDetail
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [success, setSuccess] = useState(false);
 
+  const handleSetName = (e) => {
+    setName(e.target.value)
+  } 
 
+  const handleSetAddress = (e) => {
+    setAddress(e.target.value)
+  } 
+  
+  const handleOnSubmitEmail = (e) => {
+    
+    e.preventDefault();
+    console.log(name);
+    if(!(name === '')) {
+      emailjs.sendForm('gmail', apiKey.TEMPLATE_ID, e.target, apiKey.USER_ID)
+      .then(result => {
+        setAlert(true)
+      setTimeout(() => {
+        setAlert(false)
+      }, 2000);
+        
+      //console.log('Success');
+              },
+      error => {
+      console.log('Not ')
+      })
+      console.log(e.target)
+    } else {
+      
+      console.log('Please Fill it');
+    }
+   
+}
 
  
 
@@ -104,7 +145,7 @@ function App() {
   }
 
   return (
-    <InvoiceContext.Provider value={[foodData, onClickSelect,  searchFoodData, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, alert ]}>
+    <InvoiceContext.Provider value={[foodData, onClickSelect,  searchFoodData, selectedItem, closeModal, handleOrder, order, handleEmptyBasket,handleIncreaseAmount, handleDecresaeAmount, input, handleInput, alert, handleSetName, name, handleSetAddress, address, handleOnSubmitEmail ]}>
       <div className="App">
         <Header/>
         <Routes>
@@ -124,8 +165,6 @@ function App() {
             <Route path="contact" element={<Contact/>} />
            
          </Routes>
-            
-
       </div>
 
     </InvoiceContext.Provider>
