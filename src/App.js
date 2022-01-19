@@ -38,7 +38,6 @@ function App() {
   //orderDetail
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
-  const [success, setSuccess] = useState(false);
 
   const handleSetName = (e) => {
     setName(e.target.value)
@@ -55,6 +54,7 @@ function App() {
     if(!(name === '')) {
       emailjs.sendForm('gmail', apiKey.TEMPLATE_ID, e.target, apiKey.USER_ID)
       .then(result => {
+        setOrder([]);
         setAlert(true)
       setTimeout(() => {
         setAlert(false)

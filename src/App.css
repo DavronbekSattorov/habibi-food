@@ -167,7 +167,7 @@
 
 .individual-meal {
   width: 95%;
-  border: 1px solid rgb(209, 209, 209);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   margin: auto;
   height: 60px;
   border-radius: 10px ;
@@ -369,7 +369,7 @@
 .notification {
   width: 300px;
   height: 90px;
-  background-color: #00832c;
+  background-color: #7bed9f;
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -393,7 +393,7 @@
 
 .notification-message {
   padding-left: 10px;
-  color: white;
+  color: black;
 }
 
 .success-text {
