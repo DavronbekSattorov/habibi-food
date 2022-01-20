@@ -28,7 +28,8 @@ const OrderDetails = () => {
          
             <form action="" onSubmit = {handleOnSubmitEmail} >
 
-                <textarea style={{visibility:'hidden'}} name="order" id="" cols="30" rows="10" defaultValue={
+               
+                <textarea style={{visibility:'hidden'}} name="order" id="" cols="30" rows="2" defaultValue={
                      order.map(el => {
                          if(el.amount > 0) {
                              return(
@@ -43,45 +44,23 @@ const OrderDetails = () => {
                          }
                     })
                 } readOnly>
-               
                 </textarea>
 
                 <div className="user-info">
-                    <div className="input-label">
-                        <label htmlFor="">Name</label>
-                    </div>
-                    <input type="text" name='name' value={name} onChange={e => handleSetName(e)}/>
+                    <input type="text" className='user-input' name='name' value={name} onChange={e => handleSetName(e)} placeholder='Name'/>
                 </div>
 
                 <div className="user-info">
-                    <div className="input-label">
-                        <label htmlFor="" >Enter you address</label>
-                    </div>
-                    <input type="text" name='address' />
+                    <input type="text" className='user-input' name='address' placeholder='Address'/>
                 </div>
 
                 <div className="user-info">
-                    <div className="input-label">
-                        <label htmlFor="" >Enter your phone number</label>
-                    </div>
-                    <input type="text" name='number'/>
+                    <input type="text" className='user-input' name='number'  placeholder='Phone number'/>
                 </div>
 
-                <p>Do you pay cash or buy card?</p>
-                <div className="user-info">
-                    <div className="input-label">
-                        <label htmlFor="cash" >Cash</label> 
-                    </div>
-                    <input type="radio" id="cash" name="paymet"/> <br/>
-                    
-                </div>
-                <div className="user-info">
-                    <div className="input-label">
-                        <label htmlFor="card">Card</label>
-                    </div>
-                    <input type="radio" id="card" name="paymet"/>
-                </div>
-                <button onSubmit = {handleOnSubmitEmail} >Send Message</button>
+                <p style={{color:'red'}}>Currently we are only accepting cash!</p>
+                
+                <button className='sendOrder' onSubmit = {handleOnSubmitEmail} >Send Order</button>
             </form>
             {
                 alert ? 
