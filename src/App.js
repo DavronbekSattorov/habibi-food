@@ -150,12 +150,15 @@ function App() {
         <Header/>
         <Routes>
             <Route path="/" element={
-              !modal ? 
+              
                 <div className='menu-bar'>
                   <Meals/>
                   <Drinks/>
                   <Desserts/>
-                </div> : <Modal/>} 
+                  {
+                    modal && <Modal/>
+                   }
+                </div>} 
                 />
 
             <Route path="order" element={<Order/>}/> 
@@ -165,7 +168,9 @@ function App() {
             <Route path="contact" element={<Contact/>} />
            
          </Routes>
+         
       </div>
+      
 
     </InvoiceContext.Provider>
   );
